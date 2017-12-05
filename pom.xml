@@ -1,0 +1,111 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.holon-platform.examples</groupId>
+	<artifactId>spring-boot-jaxrs-multitenant-api-example</artifactId>
+	<version>1.0.0</version>
+
+	<name>Holon platform API example using Spring Boot, Jersey with multi-tenancy support</name>
+
+	<url>https://holon-platform.com</url>
+
+	<organization>
+		<name>The Holon Platform</name>
+		<url>https://holon-platform.com</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Fabio Paroni</name>
+			<email>fparoni@gmail.com</email>
+			<organization>The Holon Platform</organization>
+			<organizationUrl>https://holon-platform.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<holon.platform.version>5.0.5</holon.platform.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Holon Platform BOM -->
+			<dependency>
+				<groupId>com.holon-platform</groupId>
+				<artifactId>bom</artifactId>
+				<version>${holon.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- Holon JAX-RS using Jersey -->
+		<dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-starter-jersey</artifactId>
+		</dependency>
+
+		<!-- Holon JDBC Datastore with HikariCP starter -->
+		<dependency>
+			<groupId>com.holon-platform.jdbc</groupId>
+			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
+		</dependency>
+
+		<!-- H2 database -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.196</version>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>com.holon-platform.core</groupId>
+			<artifactId>holon-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.holon-platform.jaxrs</groupId>
+			<artifactId>holon-jaxrs-client</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Spring Boot plugin -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.5.9.RELEASE</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

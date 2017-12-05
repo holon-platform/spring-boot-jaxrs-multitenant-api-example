@@ -1,0 +1,8 @@
+holon:
+  datasource:
+    tenant1:
+      url: "jdbc:h2:mem:tenant1"
+      username: "sa"
+    tenant2:
+      url: "jdbc:h2:mem:tenant2"
+      username: "sa"
