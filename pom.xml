@@ -37,8 +37,8 @@
 
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-
-		<holon.platform.version>5.0.5</holon.platform.version>
+		<spring.boot.version>1.5.9.RELEASE</spring.boot.version>
+		<holon.platform.version>5.0.6</holon.platform.version>
 	</properties>
 
 	<dependencyManagement>
@@ -88,6 +88,13 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- web starter -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -96,7 +103,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>1.5.9.RELEASE</version>
+				<version>${spring.boot.version}</version>
 				<executions>
 					<execution>
 						<goals>
