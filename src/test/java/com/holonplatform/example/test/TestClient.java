@@ -52,7 +52,7 @@ public class TestClient {
 				.header("X-TENANT-ID", "tenant2") // set custom tenant header
 				.propertySet(PRODUCT).getAsList(PropertyBox.class);
 
-		Assert.assertTrue(values.isEmpty());
+		Assert.assertEquals(1, values.size());
 
 		final PropertyBox product2 = PropertyBox.builder(PRODUCT).set(DESCRIPTION, "Product 1")
 				.set(SKU, "tenant2-product1").build();
