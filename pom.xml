@@ -67,6 +67,12 @@
 			<groupId>com.holon-platform.jdbc</groupId>
 			<artifactId>holon-starter-jdbc-datastore-hikaricp</artifactId>
 		</dependency>
+		
+		<!-- Holon JWT -->
+		<dependency>
+			<groupId>com.holon-platform.core</groupId>
+			<artifactId>holon-auth-jwt</artifactId>
+		</dependency>
 
 		<!-- H2 database -->
 		<dependency>

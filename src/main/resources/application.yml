@@ -6,3 +6,7 @@ holon:
     tenant2:
       url: "jdbc:h2:mem:tenant2"
       username: "sa" 
+      
+  jwt:
+    signature-algorithm: HS256
+    sharedkey-base64: eWGZLlCrUjtBZwxgzcLPnA

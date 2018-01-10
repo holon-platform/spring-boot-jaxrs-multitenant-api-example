@@ -1,7 +1,5 @@
 package com.holonplatform.example;
 
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.BeanFactory;
@@ -11,17 +9,30 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.annotation.RequestScope;
 
+import com.holonplatform.auth.jwt.JwtConfiguration;
 import com.holonplatform.core.datastore.Datastore;
 import com.holonplatform.core.tenancy.TenantResolver;
+import com.holonplatform.http.servlet.ServletHttpRequest;
 import com.holonplatform.spring.ScopeTenant;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 
 @SpringBootApplication
 public class Application {
 
+	public static final String TENANT_ID_JWT_CLAIM = "tenantId";
+	
 	@Bean
 	@RequestScope
-	public TenantResolver tenantResolver(HttpServletRequest request) {
-		return () -> Optional.ofNullable(request.getHeader("X-TENANT-ID"));
+	public TenantResolver tenantResolver(HttpServletRequest request, JwtConfiguration configuration) {
+		// use Holon ServletHttpRequest to easily obtain the Authorization header Bearer value
+		return () -> ServletHttpRequest.create(request).getAuthorizationBearer().map(bearer -> {
+			// parse JWT and get claims
+			Claims claims = Jwts.parser().setSigningKey(configuration.getSharedKey()).parseClaimsJws(bearer).getBody();
+			// return the tenantId claim value
+			return claims.get(TENANT_ID_JWT_CLAIM, String.class);
+		});
 	}
 
 	@Bean
