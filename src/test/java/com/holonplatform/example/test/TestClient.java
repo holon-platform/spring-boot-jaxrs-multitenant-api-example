@@ -11,9 +11,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.holonplatform.auth.Authentication;
@@ -44,7 +44,7 @@ public class TestClient {
 
 		// Build JWT using tenant1 as tenant id
 		String jwt = JwtTokenBuilder.get().buildJwt(jwtConfiguration,
-				Authentication.builder("aSubject").parameter(Application.TENANT_ID_JWT_CLAIM, "tenant1").build());
+				Authentication.builder("aSubject").withParameter(Application.TENANT_ID_JWT_CLAIM, "tenant1").build());
 
 		// [tenant1] add using POST
 		URI location = client.request().path("products") //
@@ -61,7 +61,7 @@ public class TestClient {
 
 		// Build JWT using tenant2 as tenant id
 		jwt = JwtTokenBuilder.get().buildJwt(jwtConfiguration,
-				Authentication.builder("aSubject").parameter(Application.TENANT_ID_JWT_CLAIM, "tenant2").build());
+				Authentication.builder("aSubject").withParameter(Application.TENANT_ID_JWT_CLAIM, "tenant2").build());
 
 		// [tenant2] get all products
 		List<PropertyBox> values = client.request().path("products") //

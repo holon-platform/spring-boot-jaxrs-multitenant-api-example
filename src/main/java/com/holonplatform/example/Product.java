@@ -20,7 +20,7 @@ public interface Product {
 
 	static final PathProperty<Double> UNIT_PRICE = PathProperty.create("price", Double.class)
 			// not negative value validator
-			.validator(Validator.notNegative());
+			.withValidator(Validator.notNegative());
 
 	// Product property set
 	static final PropertySet<?> PRODUCT = PropertySet.of(ID, SKU, DESCRIPTION, CATEGORY, UNIT_PRICE);

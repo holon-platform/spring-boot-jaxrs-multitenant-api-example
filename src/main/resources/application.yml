@@ -9,4 +9,4 @@ holon:
       
   jwt:
     signature-algorithm: HS256
-    sharedkey-base64: eWGZLlCrUjtBZwxgzcLPnA
+    sharedkey-base64: X7Cukx67arP4UQSjPBC8zEkpht8hc4FZZwiIJIz2Fr0=
